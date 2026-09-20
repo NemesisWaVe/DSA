@@ -6,9 +6,11 @@ class Solution:
         r=ROWS*COLS-1
         while l<=r:
             mid=(r+l)//2
-            if matrix[mid//COLS][mid%COLS]<target:
+            row=mid//COLS
+            col=mid%COLS
+            if matrix[row][col]<target:
                 l=mid+1
-            elif matrix[mid//COLS][mid%COLS]>target:
+            elif matrix[row][col]>target:
                 r=mid-1
             else:
                 return True
