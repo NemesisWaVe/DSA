@@ -5,14 +5,16 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def depth(self, root: TreeNode | None) -> int:
-        if root is None:
-            return 0
-        return 1+max(self.depth(root.left),self.depth(root.right))
+    def check(self,node):
+        if node is None:
+            return (0,True)
+        leftDepth,leftBalanced=self.check(node.left)
+        rightDepth,rightBalanced=self.check(node.right)
+        localBalance=abs(leftDepth-rightDepth)<=1
+        subTreeBal=localBalance and leftBalanced and rightBalanced
+        depth =1+max(leftDepth,rightDepth)
+        return (depth,subTreeBal)
     def isBalanced(self, root: TreeNode | None) -> bool:
-        if root is None:
-            return True
-        diff=self.depth(root.left)-self.depth(root.right)
-        if diff>1 or diff<-1:
-            return False
-        else: return self.isBalanced(root.left) and self.isBalanced(root.right)
+        depth,balanced=self.check(root)
+        return balanced
+        
