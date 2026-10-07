@@ -3,10 +3,11 @@ class Solution:
         l=0
         r=len(numbers)-1
         while l<r:
-            if target-numbers[l]==numbers[r]:
+            complement=target-numbers[l]
+            if complement==numbers[r]:
                 return [l+1,r+1]
-            elif target-numbers[l]>numbers[r]:
+            elif complement>numbers[r]:
                 l+=1
             else:
                 r-=1
-        return []
+        return [-1,-1]
