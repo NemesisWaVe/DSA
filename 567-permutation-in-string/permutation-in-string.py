@@ -3,22 +3,22 @@ class Solution:
         n1,n2=len(s1),len(s2)
         if n1>n2:
             return False
-        s1Ctr={}
-        windowCtr={}
+        s1ctr={}
+        windowctr={}
         for i in range(n1):
-            s1Ctr[s1[i]]=s1Ctr.get(s1[i],0)+1
-            windowCtr[s2[i]]=windowCtr.get(s2[i],0)+1
-        if s1Ctr==windowCtr:
+            s1ctr[s1[i]]=s1ctr.get(s1[i],0)+1
+            windowctr[s2[i]]=windowctr.get(s2[i],0)+1
+        if s1ctr==windowctr:
             return True
         l=0
         for r in range(n1,n2):
             incoming=s2[r]
-            windowCtr[incoming]=windowCtr.get(incoming,0)+1
+            windowctr[incoming]=windowctr.get(incoming,0)+1
             outgoing=s2[l]
-            windowCtr[outgoing]-=1
-            if windowCtr[outgoing]==0:
-                del windowCtr[outgoing]
-            l+=1
-            if s1Ctr==windowCtr:
+            windowctr[outgoing]-=1
+            if windowctr[outgoing]==0:
+                del windowctr[outgoing]
+            if s1ctr==windowctr:
                 return True
+            l+=1
         return False
