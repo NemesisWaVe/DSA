@@ -9,12 +9,12 @@ class Solution:
     def levelOrder(self, root: TreeNode | None) -> list[list[int]]:
         if not root:
             return []
-        ans=[]
         queue=deque([root])
+        ans=[]
         while queue:
-            level=[]
             size=len(queue)
-            for _ in range(size):
+            level=[]
+            for i in range(size):
                 node=queue.popleft()
                 level.append(node.val)
                 if node.left:
@@ -23,3 +23,4 @@ class Solution:
                     queue.append(node.right)
             ans.append(level)
         return ans
+            
